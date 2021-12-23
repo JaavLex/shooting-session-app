@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0.23
+    container_name: dev_shdb_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_DATABASE: shooting_session_db
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: dev_shdb_pma
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - 8080:80
