@@ -1,0 +1,32 @@
+<div class="wrapper">
+  <h1>Most recent session</h1>
+  <h2>{{ summaryDate }} - {{ summaryShootingRange }}</h2>
+  <div class="container">
+    <div class="containerlist">
+      <h2>Participants</h2>
+      <div class="scroll">
+        <p *ngFor="let participant of summaryParticipants">
+          {{ participant }}
+        </p>
+      </div>
+    </div>
+    <div class="containerlist">
+      <h2>Ammo</h2>
+      <div class="scroll">
+        <p *ngFor="let ammo of summaryAmmos">
+          {{ ammo.caliber }} - {{ ammo.amount }}
+        </p>
+      </div>
+    </div>
+    <div class="containerlist">
+      <h2>Weapons</h2>
+      <div class="scroll">
+        <p *ngFor="let weapon of summaryWeapons">
+          {{ weapon }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricewrapper">Price: {{ summaryPrice }} .-</div>
+</div>

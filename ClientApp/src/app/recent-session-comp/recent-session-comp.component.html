@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <h1>Recent Sessions</h1>
+  <div class="recent-header">
+    <p>📅</p>
+    <p>🗺</p>
+    <p>🙋‍♂️</p>
+    <p>💳</p>
+  </div>
+  <div class="session-container">
+    <app-summary-bar
+      *ngFor="let session of sessionList"
+      [summaryDate]="session.summaryDate"
+      [summaryShootingRange]="session.summaryShootingRange"
+      [summaryNumParticipants]="session.summaryNumParticipants"
+      [summaryPrice]="session.summaryPrice"
+    ></app-summary-bar>
+  </div>
+</div>

@@ -1,9 +1,18 @@
 <header>
+  <div class="titlewrapper">
+    <img src="../../assets/images/home.jpg" />
+    <h1>Shooting Session Planifier</h1>
+  </div>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="
+      navbar navbar-expand-sm navbar-toggleable-sm navbar-light
+      border-bottom
+      box-shadow
+      mb-3
+    "
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">ssa_backend</a>
+      <a class="navbar-brand" [routerLink]="['/']">🏠 Home</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -25,17 +34,13 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link" [routerLink]="['/']">Weapons</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
+            <a class="nav-link" [routerLink]="['/counter']">Ammo</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
+            <a class="nav-link" [routerLink]="['/fetch-data']">Participants</a>
           </li>
         </ul>
       </div>

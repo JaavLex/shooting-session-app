@@ -1,0 +1,27 @@
+h1 {
+  text-align: center;
+  color: white;
+}
+
+.wrapper {
+  background-color: #32936f;
+  border-radius: 3px;
+  width: 400px;
+  height: 600px;
+}
+
+.recent-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #387d7a;
+}
+
+.session-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 450px;
+  overflow: scroll;
+}

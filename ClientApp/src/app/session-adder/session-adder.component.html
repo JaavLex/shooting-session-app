@@ -1,0 +1,59 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="containerlist">
+      <h2>Participants</h2>
+      <div class="scroll">
+        <p *ngFor="let participant of summaryParticipants">
+          {{ participant }}
+        </p>
+      </div>
+      <div class="selector">
+        <select name="participant" id="part-select">
+          <option value="">--Please choose an option--</option>
+          <option value="dog">José</option>
+          <option value="cat">Alex</option>
+          <option value="hamster">Melvyn</option>
+        </select>
+        <app-default-button
+          [insideContent]="'Add participant'"
+        ></app-default-button>
+      </div>
+    </div>
+    <div class="containerlist">
+      <h2>Ammo</h2>
+      <div class="scroll">
+        <p *ngFor="let ammo of summaryAmmos">
+          {{ ammo.caliber }} - {{ ammo.amount }}
+        </p>
+      </div>
+      <div class="selector">
+        <select name="Ammo" id="ammo-select">
+          <option value="">--Please choose an option--</option>
+          <option value="dog">5.56x45</option>
+          <option value="cat">7.62x39</option>
+          <option value="hamster">9x19</option>
+        </select>
+        <app-default-button [insideContent]="'Add ammo'"></app-default-button>
+      </div>
+    </div>
+    <div class="containerlist">
+      <h2>Weapons</h2>
+      <div class="scroll">
+        <p *ngFor="let weapon of summaryWeapons">
+          {{ weapon }}
+        </p>
+      </div>
+      <div class="selector">
+        <select name="Weapons" id="ammo-select">
+          <option value="">--Please choose an option--</option>
+          <option value="dog">AR-15</option>
+          <option value="cat">AK-47</option>
+          <option value="hamster">Beretta M92FS</option>
+        </select>
+        <app-default-button [insideContent]="'Add ammo'"></app-default-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricewrapper">Price: {{ summaryPrice }} .-</div>
+</div>
