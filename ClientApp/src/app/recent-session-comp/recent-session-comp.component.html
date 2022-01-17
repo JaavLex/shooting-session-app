@@ -9,10 +9,10 @@
   <div class="session-container">
     <app-summary-bar
       *ngFor="let session of sessionList"
-      [summaryDate]="session.summaryDate"
-      [summaryShootingRange]="session.summaryShootingRange"
-      [summaryNumParticipants]="session.summaryNumParticipants"
-      [summaryPrice]="session.summaryPrice"
+      [summaryDate]="session.sessionDate"
+      [summaryShootingRange]="session.shootingRange.address"
+      [summaryNumParticipants]="session.sessionParticipants"
+      [summaryPrice]="session.totalPrice"
     ></app-summary-bar>
   </div>
 </div>

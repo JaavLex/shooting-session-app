@@ -8,6 +8,14 @@ namespace ssa_backend.Models
         public ShootingSession()
         {
         }
+
+        public ShootingSession(DateTime? sessionDate, int totalPrice, int stallCount, int shootingRangeId)
+        {
+            SessionDate = sessionDate;
+            TotalPrice = totalPrice;
+            StallCount = stallCount;
+            ShootingRangeId = shootingRangeId;
+        }
         
         public int ShootingSessionId { get; set; }
         public DateTime? SessionDate { get; set; }

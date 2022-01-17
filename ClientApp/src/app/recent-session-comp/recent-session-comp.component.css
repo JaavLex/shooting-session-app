@@ -4,7 +4,7 @@ h1 {
 }
 
 .wrapper {
-  background-color: #32936f;
+  background-color: #87705f;
   border-radius: 3px;
   width: 400px;
   height: 600px;
@@ -15,7 +15,7 @@ h1 {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #387d7a;
+  background-color: #6f655a;
 }
 
 .session-container {

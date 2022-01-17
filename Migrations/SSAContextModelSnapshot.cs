@@ -7,7 +7,7 @@ using ssa_backend.Models;
 
 namespace ssa_backend.Migrations
 {
-    [DbContext(typeof(SSAContext))]
+    [DbContext(typeof(SsaContext))]
     partial class SSAContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

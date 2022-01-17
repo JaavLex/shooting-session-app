@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,27 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  sessionList = [
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}, 
-    {summaryDate: '2017-01-23', summaryShootingRange: 'Vernand', summaryNumParticipants: '5', summaryPrice: '222'}
-  ]
+  public sessions: ShootingSession[];
+  public mostRecentSession: ShootingSession;
 
-  participants = ['José', 'Melvyn', 'Alex', 'Alex', 'Alex', 'Alex', 'Alex', 'Alex']
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    http.get<ShootingSession[]>(baseUrl + 'api/ShootingSession').subscribe(result => {
+      this.sessions = result;
+    }, error => console.error(error));
 
-  ammos = [{caliber: '7.62x39mm', amount: '256'}, {caliber: '5.56x45mm', amount: '100'}]
+    http.get<ShootingSession>(baseUrl + 'api/ShootingSession/most-recent').subscribe(result => {
+      this.mostRecentSession = result;
+    }, error => console.error(error));
+  }
+}
 
-  weapons = ['AR M1F', 'HK MR223A5']
+interface ShootingSession {
+  sessionDate: Date;
+  totalPrice: number;
+  stallCount: number;
+  shootingRange: Object;
+  sessionParticipants: Object;
+  usedAmmunitions: Object;
+  usedWeapons: Object;
 }

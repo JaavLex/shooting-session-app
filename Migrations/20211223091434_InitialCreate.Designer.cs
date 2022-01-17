@@ -8,7 +8,7 @@ using ssa_backend.Models;
 
 namespace ssa_backend.Migrations
 {
-    [DbContext(typeof(SSAContext))]
+    [DbContext(typeof(SsaContext))]
     [Migration("20211223091434_InitialCreate")]
     partial class InitialCreate
     {

@@ -1,5 +1,5 @@
 button {
-  background: #395E66;
+  background: #6f655a;
   mix-blend-mode: normal;
   border: 1px solid rgba(143, 143, 143, 0.1);
   box-sizing: border-box;
@@ -12,7 +12,7 @@ button {
   font-size: 24px;
   line-height: 100%;
   letter-spacing: -0.035em;
-  color: #F3F3F3;
+  color: #f3f3f3;
   transition: box-shadow 250ms;
 }
 

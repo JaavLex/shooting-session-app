@@ -9,6 +9,10 @@ code {
   color: #e01a76;
 }
 
+.border-bottom {
+  border-bottom: none !important;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

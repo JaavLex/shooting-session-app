@@ -1,5 +1,5 @@
 p {
-  background-color: #32936f;
+  background-color: #563f2e;
   border-radius: 8px;
   padding: 2px;
   margin: 8px;
@@ -12,7 +12,7 @@ p {
 }
 
 .wrapper {
-  background-color: #32936f;
+  background-color: #87705f;
   border-radius: 3px;
   max-width: 650px;
   height: 600px;
@@ -30,7 +30,7 @@ p {
 }
 
 .containerlist {
-  background-color: #387d7a;
+  background-color: #6f655a;
   min-width: 50px;
   border-radius: 3px;
   display: flex;

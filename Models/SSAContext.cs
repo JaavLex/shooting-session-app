@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ssa_backend.Models
 {
-    public class SSAContext : DbContext
+    public class SsaContext : DbContext
     {
         public DbSet<Person> Persons { get; set; }
         public DbSet<Ammunition> Ammunition { get; set; }
@@ -17,7 +17,7 @@ namespace ssa_backend.Models
         
         public string DbPath { get; }
 
-        public SSAContext()
+        public SsaContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ssa_backend.Models;
 
 namespace ssa_backend
 {
@@ -26,6 +27,12 @@ namespace ssa_backend
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            services.AddDbContext<SsaContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

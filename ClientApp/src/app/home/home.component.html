@@ -1,17 +1,7 @@
 <div class="container">
-  <app-recent-session-comp
-    [sessionList]="sessionList"
-  ></app-recent-session-comp>
+  <app-recent-session-comp [sessionList]="sessions"></app-recent-session-comp>
   <div class="mostrecentwrapper">
-    <app-most-recent-comp
-      [summaryDate]="'20.12.21'"
-      [summaryShootingRange]="'Vernand'"
-      [summaryParticipants]="participants"
-      [summaryAmmos]="ammos"
-      [summaryWeapons]="weapons"
-      [summaryPrice]="961"
-    >
-    </app-most-recent-comp>
+    <app-most-recent-comp [session]="mostRecentSession"> </app-most-recent-comp>
     <app-default-button
       [insideContent]="'New Session'"
       [routerLink]="['/addsession']"

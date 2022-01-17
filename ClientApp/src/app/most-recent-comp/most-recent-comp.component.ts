@@ -6,12 +6,21 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./most-recent-comp.component.css']
 })
 export class MostRecentCompComponent implements OnInit {
-  @Input() summaryDate: string = "";
-  @Input() summaryShootingRange: string = "";
-  @Input() summaryParticipants = [];
-  @Input() summaryAmmos = [];
-  @Input() summaryWeapons = [];
-  @Input() summaryPrice: number = 0;
+  @Input() session: Object = {};
+
+  formatDate(date: Date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
 
   constructor() { }
 

@@ -5,6 +5,10 @@ namespace ssa_backend.Models
         public SessionParticipant()
         {
         }
+
+        public SessionParticipant()
+        {
+        }
         
         public int SessionParticipantId { get; set; }
         

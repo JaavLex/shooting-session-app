@@ -19,8 +19,12 @@ header {
 
 nav {
   position: relative;
-  background-color: #387d7a;
-  color: #f3f3f3;
+  background-color: #dddddd15;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand {
+  color: white;
 }
 
 .titlewrapper {
@@ -41,6 +45,7 @@ nav {
 .titlewrapper h1 {
   position: absolute;
   color: #f3f3f3;
+  text-shadow: 2px 2px 0 rgb(0, 0, 0);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
