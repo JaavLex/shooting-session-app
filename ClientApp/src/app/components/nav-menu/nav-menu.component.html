@@ -1,0 +1,61 @@
+<header>
+  <div class="titlewrapper">
+    <img src="../../assets/images/home.jpg" />
+    <h1>Shooting Session Planifier</h1>
+  </div>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3"
+  >
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']"
+        ><mat-icon
+          class="icon-color"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          style="display: flex; justify-content: center; align-items: center"
+          >home</mat-icon
+        ></a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <mat-icon
+          class="icon-color"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          style="display: flex; justify-content: center; align-items: center"
+          >menu</mat-icon
+        >
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-start"
+        [ngClass]="{ show: isExpanded }"
+      >
+        <ul class="navbar-nav flex-grow">
+          <li
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a class="nav-link" [routerLink]="['/']">Weapons</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link" [routerLink]="['/counter']">Ammo</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link" [routerLink]="['/fetch-data']">Participants</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link">Ranges</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <h2>
+    {{ formatDate(session.sessionDate) }} - {{ session.shootingRange.address }}
+  </h2>
+  <div class="container">
+    <div class="containerlist">
+      <h2>Participants</h2>
+      <div class="scroll">
+        <p *ngFor="let participant of session.sessionParticipants">
+          {{ participant.name }} - {{ participant.age }}
+        </p>
+      </div>
+    </div>
+    <div class="containerlist">
+      <h2>Ammo</h2>
+      <div class="scroll">
+        <p *ngFor="let ammo of session.usedAmmunitions">
+          {{ ammo.caliber }} - {{ ammo.countUsed }}
+        </p>
+      </div>
+    </div>
+    <div class="containerlist">
+      <h2>Weapons</h2>
+      <div class="scroll">
+        <p *ngFor="let weapon of session.usedWeapons">
+          {{ weapon.weaponName }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricewrapper">{{ session.totalPrice }}.-</div>
+
+  <div class="action-buttons">
+    <app-minimal-button
+      [insideContent]="'edit'"
+      (click)="updateSession(session.shootingSessionId)"
+    ></app-minimal-button>
+    <app-minimal-button
+      [insideContent]="'delete'"
+      (click)="deleteSession(session.shootingSessionId)"
+    ></app-minimal-button>
+  </div>
+</div>

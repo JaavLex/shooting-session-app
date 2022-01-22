@@ -1,0 +1,13 @@
+<div class="container">
+  <app-recent-session-comp
+    [sessionList]="sessions"
+    (showSessionId)="setShownSession($event)"
+  ></app-recent-session-comp>
+  <div class="mostrecentwrapper">
+    <app-most-recent-comp [session]="mostRecentSession"> </app-most-recent-comp>
+    <app-default-button
+      [insideContent]="'New Session'"
+      [routerLink]="['/addsession']"
+    ></app-default-button>
+  </div>
+</div>

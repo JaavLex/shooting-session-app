@@ -1,0 +1,49 @@
+h1 {
+  text-align: center;
+  color: white;
+}
+
+button {
+  background: transparent;
+  border: none !important;
+}
+
+.wrapper {
+  background-color: #87705f;
+  border-radius: 3px;
+  width: 400px;
+  height: 600px;
+}
+
+.recent-header {
+  width: 100%;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #6f655a;
+}
+
+.icons-header {
+  width: 365px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.session-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 450px;
+  overflow: scroll;
+}
+
+.icon-color {
+  color: white;
+}
+
+.session-button {
+  cursor: pointer;
+}
