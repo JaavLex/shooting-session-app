@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MostRecentCompComponent } from './most-recent-comp.component';
+import { SessionViewerCompComponent } from "./session-viewer-comp.component";
 
-describe('MostRecentCompComponent', () => {
-  let component: MostRecentCompComponent;
-  let fixture: ComponentFixture<MostRecentCompComponent>;
+describe("SessionViewerCompComponent", () => {
+  let component: SessionViewerCompComponent;
+  let fixture: ComponentFixture<SessionViewerCompComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MostRecentCompComponent ]
-    })
-    .compileComponents();
+      declarations: [SessionViewerCompComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostRecentCompComponent);
+    fixture = TestBed.createComponent(SessionViewerCompComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

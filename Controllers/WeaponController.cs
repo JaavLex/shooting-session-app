@@ -31,7 +31,8 @@ namespace ssa_backend.Controllers
                 {
                     WeaponId = w.WeaponId,
                     WeaponName = w.WeaponName,
-                    WeaponPicture = w.WeaponPicture
+                    WeaponPicture = w.WeaponPicture,
+                    AmmunitionId = w.AmmunitionId
                 })
                 .OrderBy(w => w.WeaponId)
                 .ToList();

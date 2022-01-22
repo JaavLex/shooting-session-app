@@ -20,8 +20,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MinimalButtonComponent } from "./components/minimal-button/minimal-button.component";
 import { SessionUpdateComponent } from "./pages/session-update/session-update.component";
 import { HomeWeaponsComponent } from "./pages/home-weapons/home-weapons.component";
-import { WeaponListCompComponent } from './weapon-list-comp/weapon-list-comp.component';
-import { WeaponViewerCompComponent } from './weapon-viewer-comp/weapon-viewer-comp.component';
+import { WeaponListCompComponent } from "./components/weapon-list-comp/weapon-list-comp.component";
+import { WeaponViewerCompComponent } from "./components/weapon-viewer-comp/weapon-viewer-comp.component";
 
 @NgModule({
   declarations: [
