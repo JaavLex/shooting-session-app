@@ -25,9 +25,9 @@ namespace ssa_backend.Controllers
 
         // GET: api/ShootingRange
         [HttpGet]
-        public List<IShootingRangeDto> Get()
+        public List<ShootingRangeDto> Get()
         {
-            var shootingRanges = _ssaContext.ShootingRanges.Select(sr => new IShootingRangeDto()
+            var shootingRanges = _ssaContext.ShootingRanges.Select(sr => new ShootingRangeDto()
                 {
                     ShootingRangeId = sr.ShootingRangeId,
                     Address = sr.Address,

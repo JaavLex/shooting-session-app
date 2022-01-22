@@ -25,9 +25,9 @@ namespace ssa_backend.Controllers
 
         // GET: api/Ammunition
         [HttpGet]
-        public List<IAmmunitionDto> Get()
+        public List<AmmunitionDto> Get()
         {
-            var ammos = _ssaContext.Ammunition.Select(a => new IAmmunitionDto()
+            var ammos = _ssaContext.Ammunition.Select(a => new AmmunitionDto()
                 {
                     AmmunitionId = a.AmmunitionId,
                     Caliber = a.Caliber,

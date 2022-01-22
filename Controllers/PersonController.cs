@@ -25,9 +25,9 @@ namespace ssa_backend.Controllers
 
         // GET: api/Person
         [HttpGet]
-        public List<IPersonDto> Get()
+        public List<PersonDto> Get()
         {
-            var persons = _ssaContext.Persons.Select(p => new IPersonDto() {PersonId = p.PersonId, Age = p.Age, Name = p.Name})
+            var persons = _ssaContext.Persons.Select(p => new PersonDto() {PersonId = p.PersonId, Age = p.Age, Name = p.Name})
                 .OrderBy(p => p.PersonId)
                 .ToList();
                 

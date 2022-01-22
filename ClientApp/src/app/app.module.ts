@@ -12,13 +12,16 @@ import { FetchDataComponent } from "./components/fetch-data/fetch-data.component
 import { DefaultButtonComponent } from "./components/default-button/default-button.component";
 import { SummaryBarComponent } from "./components/summary-bar/summary-bar.component";
 import { RecentSessionCompComponent } from "./components/recent-session-comp/recent-session-comp.component";
-import { MostRecentCompComponent } from "./components/most-recent-comp/most-recent-comp.component";
+import { SessionViewerCompComponent } from "./components/session-viewer-comp/session-viewer-comp.component";
 import { SessionAdderComponent } from "./pages/session-adder/session-adder.component";
 import { Session } from "protractor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { MinimalButtonComponent } from "./components/minimal-button/minimal-button.component";
 import { SessionUpdateComponent } from "./pages/session-update/session-update.component";
+import { HomeWeaponsComponent } from "./pages/home-weapons/home-weapons.component";
+import { WeaponListCompComponent } from './weapon-list-comp/weapon-list-comp.component';
+import { WeaponViewerCompComponent } from './weapon-viewer-comp/weapon-viewer-comp.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +33,13 @@ import { SessionUpdateComponent } from "./pages/session-update/session-update.co
     DefaultButtonComponent,
     SummaryBarComponent,
     RecentSessionCompComponent,
-    MostRecentCompComponent,
+    SessionViewerCompComponent,
     SessionAdderComponent,
     MinimalButtonComponent,
     SessionUpdateComponent,
+    HomeWeaponsComponent,
+    WeaponListCompComponent,
+    WeaponViewerCompComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

@@ -25,9 +25,9 @@ namespace ssa_backend.Controllers
 
         // GET: api/Weapon
         [HttpGet]
-        public List<IWeaponDto> Get()
+        public List<WeaponDto> Get()
         {
-            var weapons = _ssaContext.Weapons.Select(w => new IWeaponDto()
+            var weapons = _ssaContext.Weapons.Select(w => new WeaponDto()
                 {
                     WeaponId = w.WeaponId,
                     WeaponName = w.WeaponName,

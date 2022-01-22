@@ -12,7 +12,7 @@ namespace ssa_backend.Models
         public string WeaponName { get; set; }
         public string WeaponPicture { get; set; }
         
-        public int? AmmoId { get; set; }
+        public int? AmmunitionId { get; set; }
         public virtual Ammunition Ammunition { get; set; }
         
         public List<UsedWeapon> UsedWeapons { get; set; }

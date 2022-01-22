@@ -1,6 +1,6 @@
 namespace ssa_backend.Models.DTO
 {
-    public class IWeaponDto
+    public class WeaponSessionDto
     {
         public int WeaponId { get; set; }
         public string WeaponName { get; set; }

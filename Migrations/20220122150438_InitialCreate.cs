@@ -58,7 +58,6 @@ namespace ssa_backend.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     WeaponName = table.Column<string>(type: "TEXT", nullable: true),
                     WeaponPicture = table.Column<string>(type: "TEXT", nullable: true),
-                    AmmoId = table.Column<int>(type: "INTEGER", nullable: true),
                     AmmunitionId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>

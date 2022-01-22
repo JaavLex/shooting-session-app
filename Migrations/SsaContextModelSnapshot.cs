@@ -2,17 +2,15 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ssa_backend.Models;
 
 namespace ssa_backend.Migrations
 {
     [DbContext(typeof(SsaContext))]
-    [Migration("20220117150745_InitialCreate")]
-    partial class InitialCreate
+    partial class SsaContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,9 +165,6 @@ namespace ssa_backend.Migrations
                 {
                     b.Property<int>("WeaponId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AmmoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("AmmunitionId")

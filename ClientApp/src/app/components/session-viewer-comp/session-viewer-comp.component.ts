@@ -3,11 +3,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 @Component({
-  selector: "app-most-recent-comp",
-  templateUrl: "./most-recent-comp.component.html",
-  styleUrls: ["./most-recent-comp.component.css"],
+  selector: "app-session-viewer-comp",
+  templateUrl: "./session-viewer-comp.component.html",
+  styleUrls: ["./session-viewer-comp.component.css"],
 })
-export class MostRecentCompComponent implements OnInit {
+export class SessionViewerCompComponent implements OnInit {
   @Input() session: Object = {};
 
   formatDate(date: Date) {

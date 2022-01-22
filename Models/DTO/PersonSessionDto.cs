@@ -1,6 +1,6 @@
 namespace ssa_backend.Models.DTO
 {
-    public class IPersonDto
+    public class PersonSessionDto
     {
         public int PersonId { get; set; }
         public string Name { get; set; }

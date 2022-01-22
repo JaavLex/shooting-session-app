@@ -1,6 +1,6 @@
 namespace ssa_backend.Models.DTO
 {
-    public class IShootingRangeDto
+    public class RangeSessionDto
     {
         public int ShootingRangeId { get; set; }
         public int PricePerStall { get; set; }

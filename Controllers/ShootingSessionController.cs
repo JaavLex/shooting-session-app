@@ -1,14 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic.CompilerServices;
 using ssa_backend.Models;
 using ssa_backend.Models.DTO;
 
@@ -29,7 +22,7 @@ namespace ssa_backend.Controllers
 
         // GET: api/ShootingSession
         [HttpGet]
-        public List<IShootingSessionDto> Get()
+        public List<ShootingSessionDto> Get()
         {
             var shootingSessions = GetShootingSessionDto()
                      .OrderByDescending(s => s.SessionDate)
@@ -40,7 +33,7 @@ namespace ssa_backend.Controllers
         
         // GET: api/ShootingSession/most-recent
         [HttpGet("most-recent")]
-        public IShootingSessionDto GetLast()
+        public ShootingSessionDto GetLast()
         {
             var shootingSessions = GetShootingSessionDto()
                     .OrderByDescending(s => s.SessionDate)
@@ -51,7 +44,7 @@ namespace ssa_backend.Controllers
         
         // GET: api/ShootingSession/{id}
         [HttpGet("{id}")]
-        public IShootingSessionDto GetById(int id)
+        public ShootingSessionDto GetById(int id)
         {
             var shootingSessions = GetShootingSessionDto()
                 .SingleOrDefault(s => s.ShootingSessionId == id);
@@ -59,6 +52,7 @@ namespace ssa_backend.Controllers
             return shootingSessions;
         }
 
+        // DELETE: api/ShootingSession/delete/{id}
         [HttpDelete("delete/{id}")]
         public ActionResult Delete(int id)
         {
@@ -78,7 +72,7 @@ namespace ssa_backend.Controllers
         // POST: api/ShootingSession
         // Creates a new session, and linking it with its participants ammunitions and weapons.
         [HttpPost]
-        public int Post([FromBody] ShootingSession body)
+        public ActionResult Post([FromBody] ShootingSession body)
         {
             var session = new ShootingSession(body.SessionDate, body.TotalPrice, body.StallCount, body.ShootingRangeId);
             _ssaContext.Add(session);
@@ -104,9 +98,11 @@ namespace ssa_backend.Controllers
             
             _ssaContext.SaveChanges();
 
-            return 200;
+            return Ok("Successfully created a session");
         }
 
+        // PUT: api/ShootingSession/update/{id}
+        // Modifies an already existing session
         [HttpPut("update/{id}")]
         public ActionResult Update(int id, [FromBody] ShootingSession body)
         {
@@ -161,8 +157,8 @@ namespace ssa_backend.Controllers
             }
             
             foreach (var usedAmmo in ammoToAdd
-                         .Select(ammoId => new UsedAmmunition(id, ammoId,
-                             body.UsedAmmunitions.First(ua => ua.AmmunitionId == ammoId).CountUsed)))
+                         .Select(ammunitionId => new UsedAmmunition(id, ammunitionId,
+                             body.UsedAmmunitions.First(ua => ua.AmmunitionId == ammunitionId).CountUsed)))
             {
                 _ssaContext.Add(usedAmmo);
             }
@@ -186,8 +182,8 @@ namespace ssa_backend.Controllers
             }
             
             foreach (var usedAmmo in ammoToDelete
-                         .Select(ammoId => _ssaContext.UsedAmmunitions
-                             .FirstOrDefault(ua => ua.ShootingSessionId == id && ua.AmmunitionId == ammoId)))
+                         .Select(ammunitionId => _ssaContext.UsedAmmunitions
+                             .FirstOrDefault(ua => ua.ShootingSessionId == id && ua.AmmunitionId == ammunitionId)))
             {
                 if (usedAmmo == null)
                 {
@@ -211,32 +207,32 @@ namespace ssa_backend.Controllers
             
             _ssaContext.SaveChanges();
 
-            return Ok();
+            return Ok("Successfully modified a session");
         }
 
-        private IQueryable<IShootingSessionDto> GetShootingSessionDto()
+        private IQueryable<ShootingSessionDto> GetShootingSessionDto()
         {
             return _ssaContext.ShootingSessions
-                .Select(s => new IShootingSessionDto()
+                .Select(s => new ShootingSessionDto()
                 {
                     ShootingSessionId = s.ShootingSessionId,
                     SessionDate = s.SessionDate,
                     TotalPrice = s.TotalPrice,
-                    ShootingRange = new IRangeSessionDto()
+                    ShootingRange = new RangeSessionDto()
                     {
                         ShootingRangeId = s.ShootingRangeId,
                         Address = s.ShootingRange.Address, 
                         PricePerStall = s.ShootingRange.PricePerStall
                     },
                     SessionParticipants = s.SessionParticipants.Select(sp => sp.Person)
-                        .Select(p => new IPersonSessionDto()
+                        .Select(p => new PersonSessionDto()
                         {
                             PersonId = p.PersonId, 
                             Name = p.Name, 
                             Age = p.Age
                         })
                         .ToList(),
-                    UsedAmmunitions = s.UsedAmmunitions.Select(ua => new IAmmoSessionDto()
+                    UsedAmmunitions = s.UsedAmmunitions.Select(ua => new AmmoSessionDto()
                     {
                         AmmunitionId = ua.AmmunitionId,
                         AmmoPicture = ua.Ammunition.AmmoPicture,
@@ -245,7 +241,7 @@ namespace ssa_backend.Controllers
                         CountUsed = ua.CountUsed
                     }).ToList(),
                     UsedWeapons = s.UsedWeapons.Select(uw => uw.Weapon)
-                        .Select(w => new IWeaponSessionDto()
+                        .Select(w => new WeaponSessionDto()
                         {
                             WeaponId = w.WeaponId,
                             WeaponName = w.WeaponName, 
