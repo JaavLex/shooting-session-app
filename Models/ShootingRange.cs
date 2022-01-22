@@ -11,7 +11,5 @@ namespace ssa_backend.Models
         public int ShootingRangeId { get; set; }
         public int PricePerStall { get; set; }
         public string Address { get; set; }
-        
-        public List<ShootingRange> ShootingRanges { get; set; }
     }
 }

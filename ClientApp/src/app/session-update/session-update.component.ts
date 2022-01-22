@@ -1,35 +1,39 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, Inject, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: "app-session-adder",
-  templateUrl: "./session-adder.component.html",
-  styleUrls: ["./session-adder.component.css"],
+  selector: "app-session-update",
+  templateUrl: "./session-update.component.html",
+  styleUrls: ["./session-update.component.css"],
 })
-export class SessionAdderComponent implements OnInit {
+export class SessionUpdateComponent implements OnInit {
   public personList: Person[] = [];
   public ammoList: Ammunition[] = [];
   public weaponList: Weapon[] = [];
   public shootingRangeList: ShootingRange[] = [];
+  public updateSession: ShootingSession;
 
   selectedPerson: Person;
   selectedAmmo: Ammunition;
   selectedWeapon: Weapon;
-  selectedRange: ShootingRange;
+  selectedRange: any;
 
   priceInput: number;
   countInput: number;
-  dateInput: Date;
+  dateInput: any;
 
   selectedPersonList: Person[] = [];
-  selectedAmmoList: any[] = [];
+  selectedAmmoList: Ammunition[] = [];
   selectedWeaponList: Weapon[] = [];
+
+  updateId: number;
 
   constructor(
     private http: HttpClient,
     @Inject("BASE_URL") baseUrl: string,
-    private route: Router
+    private route: Router,
+    routeparams: ActivatedRoute
   ) {
     http.get<Person[]>(baseUrl + "api/Person").subscribe(
       (result) => {
@@ -58,10 +62,42 @@ export class SessionAdderComponent implements OnInit {
       },
       (error) => console.error(error)
     );
+
+    routeparams.params.subscribe((p) => (this.updateId = +p["id"]));
+
+    http
+      .get<ShootingSession>(
+        `https://localhost:5001/api/ShootingSession/${this.updateId}`
+      )
+      .subscribe(
+        (result) => {
+          this.updateSession = result;
+          this.selectedPersonList = result.sessionParticipants;
+          this.selectedAmmoList = result.usedAmmunitions;
+          this.selectedWeaponList = result.usedWeapons;
+          this.priceInput = result.totalPrice;
+          this.dateInput = this.formatDate(result.sessionDate);
+          this.selectedRange = result.shootingRange.shootingRangeId;
+        },
+        (error) => console.error(error)
+      );
+  }
+
+  formatDate(date: Date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
   }
 
   personAddClick = () => {
     this.selectedPersonList.push(this.selectedPerson);
+    console.log(this.selectedPersonList);
     this.personList = this.personList.filter((p) =>
       this.selectedPersonList.find((sp) => p.personId !== sp.personId)
     );
@@ -69,7 +105,8 @@ export class SessionAdderComponent implements OnInit {
 
   personRemoveClick = (id: number) => {
     this.selectedPersonList.splice(
-      this.selectedPersonList.findIndex((e) => e.personId === id)
+      this.selectedPersonList.findIndex((e) => e.personId === id),
+      1
     );
     this.personList = this.personList.filter((p) =>
       this.selectedPersonList.find((sp) => p.personId !== sp.personId)
@@ -136,15 +173,18 @@ export class SessionAdderComponent implements OnInit {
       );
     } else {
       this.http
-        .post<ShootingSession>("https://localhost:5001/api/ShootingSession", {
-          sessionDate: this.dateInput,
-          totalPrice: this.priceInput,
-          stallCount: 4,
-          shootingRangeId: this.selectedRange,
-          sessionParticipants: this.selectedPersonList,
-          usedAmmunitions: this.selectedAmmoList,
-          usedWeapons: this.selectedWeaponList,
-        })
+        .put<any>(
+          `https://localhost:5001/api/ShootingSession/update/${this.updateId}`,
+          {
+            sessionDate: this.dateInput,
+            totalPrice: this.priceInput,
+            stallCount: 4,
+            shootingRangeId: this.selectedRange,
+            sessionParticipants: this.selectedPersonList,
+            usedAmmunitions: this.selectedAmmoList,
+            usedWeapons: this.selectedWeaponList,
+          }
+        )
         .subscribe(
           (result) => {
             console.log(result);
@@ -188,7 +228,7 @@ interface ShootingSession {
   sessionDate: Date;
   totalPrice: number;
   stallCount: number;
-  shootingRangeId: number;
+  shootingRange: ShootingRange;
   sessionParticipants: Person[];
   usedAmmunitions: Ammunition[];
   usedWeapons: Weapon[];

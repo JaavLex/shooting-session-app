@@ -1,5 +1,8 @@
 <div class="container">
-  <app-recent-session-comp [sessionList]="sessions"></app-recent-session-comp>
+  <app-recent-session-comp
+    [sessionList]="sessions"
+    (showSessionId)="setShownSession($event)"
+  ></app-recent-session-comp>
   <div class="mostrecentwrapper">
     <app-most-recent-comp [session]="mostRecentSession"> </app-most-recent-comp>
     <app-default-button

@@ -6,13 +6,15 @@ namespace ssa_backend.Models
         {
         }
 
-        public SessionParticipant()
+        public SessionParticipant(int shootingSessionId, int personId)
         {
+            ShootingSessionId = shootingSessionId;
+            PersonId = personId;
         }
         
         public int SessionParticipantId { get; set; }
         
-        public int SessionId { get; set; }
+        public int ShootingSessionId { get; set; }
         public virtual ShootingSession ShootingSession { get; set; }
         
         public int PersonId { get; set; }

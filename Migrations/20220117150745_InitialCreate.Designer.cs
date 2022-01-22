@@ -9,7 +9,7 @@ using ssa_backend.Models;
 namespace ssa_backend.Migrations
 {
     [DbContext(typeof(SsaContext))]
-    [Migration("20211223091434_InitialCreate")]
+    [Migration("20220117150745_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,10 +64,7 @@ namespace ssa_backend.Migrations
                     b.Property<int>("PersonId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ShootingSessionId")
+                    b.Property<int>("ShootingSessionId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("SessionParticipantId");
@@ -91,12 +88,7 @@ namespace ssa_backend.Migrations
                     b.Property<int>("PricePerStall")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ShootingRangeId1")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("ShootingRangeId");
-
-                    b.HasIndex("ShootingRangeId1");
 
                     b.ToTable("ShootingRanges");
                 });
@@ -132,19 +124,13 @@ namespace ssa_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AmmoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AmmunitionId")
+                    b.Property<int>("AmmunitionId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CountUsed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ShootingSessionId")
+                    b.Property<int>("ShootingSessionId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("UsedAmmunitionId");
@@ -162,10 +148,7 @@ namespace ssa_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ShootingSessionId")
+                    b.Property<int>("ShootingSessionId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("WeaponId")
@@ -215,18 +198,13 @@ namespace ssa_backend.Migrations
 
                     b.HasOne("ssa_backend.Models.ShootingSession", "ShootingSession")
                         .WithMany("SessionParticipants")
-                        .HasForeignKey("ShootingSessionId");
+                        .HasForeignKey("ShootingSessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Person");
 
                     b.Navigation("ShootingSession");
-                });
-
-            modelBuilder.Entity("ssa_backend.Models.ShootingRange", b =>
-                {
-                    b.HasOne("ssa_backend.Models.ShootingRange", null)
-                        .WithMany("ShootingRanges")
-                        .HasForeignKey("ShootingRangeId1");
                 });
 
             modelBuilder.Entity("ssa_backend.Models.ShootingSession", b =>
@@ -244,11 +222,15 @@ namespace ssa_backend.Migrations
                 {
                     b.HasOne("ssa_backend.Models.Ammunition", "Ammunition")
                         .WithMany("UsedAmmunitions")
-                        .HasForeignKey("AmmunitionId");
+                        .HasForeignKey("AmmunitionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ssa_backend.Models.ShootingSession", "ShootingSession")
                         .WithMany("UsedAmmunitions")
-                        .HasForeignKey("ShootingSessionId");
+                        .HasForeignKey("ShootingSessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Ammunition");
 
@@ -259,7 +241,9 @@ namespace ssa_backend.Migrations
                 {
                     b.HasOne("ssa_backend.Models.ShootingSession", "ShootingSession")
                         .WithMany("UsedWeapons")
-                        .HasForeignKey("ShootingSessionId");
+                        .HasForeignKey("ShootingSessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("ssa_backend.Models.Weapon", "Weapon")
                         .WithMany("UsedWeapons")
@@ -291,11 +275,6 @@ namespace ssa_backend.Migrations
             modelBuilder.Entity("ssa_backend.Models.Person", b =>
                 {
                     b.Navigation("SessionParticipants");
-                });
-
-            modelBuilder.Entity("ssa_backend.Models.ShootingRange", b =>
-                {
-                    b.Navigation("ShootingRanges");
                 });
 
             modelBuilder.Entity("ssa_backend.Models.ShootingSession", b =>

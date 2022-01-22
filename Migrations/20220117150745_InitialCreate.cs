@@ -43,18 +43,11 @@ namespace ssa_backend.Migrations
                     ShootingRangeId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     PricePerStall = table.Column<int>(type: "INTEGER", nullable: false),
-                    Address = table.Column<string>(type: "TEXT", nullable: true),
-                    ShootingRangeId1 = table.Column<int>(type: "INTEGER", nullable: true)
+                    Address = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ShootingRanges", x => x.ShootingRangeId);
-                    table.ForeignKey(
-                        name: "FK_ShootingRanges_ShootingRanges_ShootingRangeId1",
-                        column: x => x.ShootingRangeId1,
-                        principalTable: "ShootingRanges",
-                        principalColumn: "ShootingRangeId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,8 +100,7 @@ namespace ssa_backend.Migrations
                 {
                     SessionParticipantId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    SessionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ShootingSessionId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ShootingSessionId = table.Column<int>(type: "INTEGER", nullable: false),
                     PersonId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -125,7 +117,7 @@ namespace ssa_backend.Migrations
                         column: x => x.ShootingSessionId,
                         principalTable: "ShootingSessions",
                         principalColumn: "ShootingSessionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,10 +127,8 @@ namespace ssa_backend.Migrations
                     UsedAmmunitionId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CountUsed = table.Column<int>(type: "INTEGER", nullable: false),
-                    SessionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ShootingSessionId = table.Column<int>(type: "INTEGER", nullable: true),
-                    AmmoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AmmunitionId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ShootingSessionId = table.Column<int>(type: "INTEGER", nullable: false),
+                    AmmunitionId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -148,13 +138,13 @@ namespace ssa_backend.Migrations
                         column: x => x.AmmunitionId,
                         principalTable: "Ammunition",
                         principalColumn: "AmmunitionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UsedAmmunitions_ShootingSessions_ShootingSessionId",
                         column: x => x.ShootingSessionId,
                         principalTable: "ShootingSessions",
                         principalColumn: "ShootingSessionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,8 +153,7 @@ namespace ssa_backend.Migrations
                 {
                     UsedWeaponId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    SessionId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ShootingSessionId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ShootingSessionId = table.Column<int>(type: "INTEGER", nullable: false),
                     WeaponId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -175,7 +164,7 @@ namespace ssa_backend.Migrations
                         column: x => x.ShootingSessionId,
                         principalTable: "ShootingSessions",
                         principalColumn: "ShootingSessionId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UsedWeapons_Weapons_WeaponId",
                         column: x => x.WeaponId,
@@ -193,11 +182,6 @@ namespace ssa_backend.Migrations
                 name: "IX_SessionParticipants_ShootingSessionId",
                 table: "SessionParticipants",
                 column: "ShootingSessionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ShootingRanges_ShootingRangeId1",
-                table: "ShootingRanges",
-                column: "ShootingRangeId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShootingSessions_ShootingRangeId",

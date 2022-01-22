@@ -5,10 +5,16 @@ namespace ssa_backend.Models
         public UsedWeapon()
         {
         }
+
+        public UsedWeapon(int shootingSessionId, int weaponId)
+        {
+            ShootingSessionId = shootingSessionId;
+            WeaponId = weaponId;
+        }
         
         public int UsedWeaponId { get; set; }
         
-        public int SessionId { get; set; }
+        public int ShootingSessionId { get; set; }
         public virtual ShootingSession ShootingSession { get; set; }
         
         public int WeaponId { get; set; }

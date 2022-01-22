@@ -4,15 +4,18 @@
     <h1>Shooting Session Planifier</h1>
   </div>
   <nav
-    class="
-      navbar navbar-expand-sm navbar-toggleable-sm navbar-light
-      border-bottom
-      box-shadow
-      mb-3
-    "
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">🏠 Home</a>
+      <a class="navbar-brand" [routerLink]="['/']"
+        ><mat-icon
+          class="icon-color"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          style="display: flex; justify-content: center; align-items: center"
+          >home</mat-icon
+        ></a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -22,10 +25,16 @@
         [attr.aria-expanded]="isExpanded"
         (click)="toggle()"
       >
-        <span class="navbar-toggler-icon"></span>
+        <mat-icon
+          class="icon-color"
+          aria-hidden="false"
+          aria-label="Example home icon"
+          style="display: flex; justify-content: center; align-items: center"
+          >menu</mat-icon
+        >
       </button>
       <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-start"
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
@@ -41,6 +50,9 @@
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link" [routerLink]="['/fetch-data']">Participants</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link">Ranges</a>
           </li>
         </ul>
       </div>

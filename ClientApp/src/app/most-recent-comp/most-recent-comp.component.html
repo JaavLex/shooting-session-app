@@ -1,5 +1,4 @@
 <div class="wrapper">
-  <h1>Most recent session</h1>
   <h2>
     {{ formatDate(session.sessionDate) }} - {{ session.shootingRange.address }}
   </h2>
@@ -30,5 +29,16 @@
     </div>
   </div>
 
-  <div class="pricewrapper">Price: {{ session.totalPrice }} .-</div>
+  <div class="pricewrapper">{{ session.totalPrice }}.-</div>
+
+  <div class="action-buttons">
+    <app-minimal-button
+      [insideContent]="'edit'"
+      (click)="updateSession(session.shootingSessionId)"
+    ></app-minimal-button>
+    <app-minimal-button
+      [insideContent]="'delete'"
+      (click)="deleteSession(session.shootingSessionId)"
+    ></app-minimal-button>
+  </div>
 </div>

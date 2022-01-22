@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-summary-bar',
-  templateUrl: './summary-bar.component.html',
-  styleUrls: ['./summary-bar.component.css']
+  selector: "app-summary-bar",
+  templateUrl: "./summary-bar.component.html",
+  styleUrls: ["./summary-bar.component.css"],
 })
 export class SummaryBarComponent implements OnInit {
   @Input() summaryDate: Date = new Date();
@@ -13,21 +13,17 @@ export class SummaryBarComponent implements OnInit {
 
   formatDate(date: Date) {
     var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
 
-    return [year, month, day].join('-');
+    return [year, month, day].join("-");
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
