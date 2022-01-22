@@ -78,7 +78,7 @@
       </div>
       <div class="selector">
         <select #weapon [(ngModel)]="selectedWeapon">
-          <option value="default">--SELECT--</option>
+          <option disabled>Select a weapon</option>
           <option *ngFor="let weapon of weaponList" [ngValue]="weapon">
             {{ weapon.weaponName }}
           </option>

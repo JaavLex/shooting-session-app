@@ -29,32 +29,70 @@ export class SessionUpdateComponent implements OnInit {
 
   updateId: number;
 
+  refreshPersonList = () => {
+    this.http.get<Person[]>(this.baseUrl + "api/Person").subscribe(
+      (result) => {
+        this.personList = result.filter(
+          (p) =>
+            !this.selectedPersonList.find((sp) => p.personId === sp.personId)
+        );
+      },
+      (error) => console.error(error)
+    );
+  };
+
+  refreshAmmoList = () => {
+    this.http.get<Ammunition[]>(this.baseUrl + "api/Ammunition").subscribe(
+      (result) => {
+        this.ammoList = result.filter(
+          (a) =>
+            !this.selectedAmmoList.find(
+              (sa) => a.ammunitionId === sa.ammunitionId
+            )
+        );
+      },
+      (error) => console.error(error)
+    );
+  };
+
+  refreshWeaponList = () => {
+    this.http.get<Weapon[]>(this.baseUrl + "api/Weapon").subscribe(
+      (result) => {
+        this.weaponList = result.filter(
+          (w) =>
+            !this.selectedWeaponList.find((sw) => w.weaponId === sw.weaponId)
+        );
+      },
+      (error) => console.error(error)
+    );
+  };
+
   constructor(
     private http: HttpClient,
-    @Inject("BASE_URL") baseUrl: string,
+    @Inject("BASE_URL") private baseUrl: string,
     private route: Router,
     routeparams: ActivatedRoute
   ) {
-    http.get<Person[]>(baseUrl + "api/Person").subscribe(
-      (result) => {
-        this.personList = result;
-      },
-      (error) => console.error(error)
-    );
+    // http.get<Person[]>(baseUrl + "api/Person").subscribe(
+    //   (result) => {
+    //     this.personList = result;
+    //   },
+    //   (error) => console.error(error)
+    // );
 
-    http.get<Ammunition[]>(baseUrl + "api/Ammunition").subscribe(
-      (result) => {
-        this.ammoList = result;
-      },
-      (error) => console.error(error)
-    );
+    // http.get<Ammunition[]>(baseUrl + "api/Ammunition").subscribe(
+    //   (result) => {
+    //     this.ammoList = result;
+    //   },
+    //   (error) => console.error(error)
+    // );
 
-    http.get<Weapon[]>(baseUrl + "api/Weapon").subscribe(
-      (result) => {
-        this.weaponList = result;
-      },
-      (error) => console.error(error)
-    );
+    // http.get<Weapon[]>(baseUrl + "api/Weapon").subscribe(
+    //   (result) => {
+    //     this.weaponList = result;
+    //   },
+    //   (error) => console.error(error)
+    // );
 
     http.get<ShootingRange[]>(baseUrl + "api/ShootingRange").subscribe(
       (result) => {
@@ -81,6 +119,10 @@ export class SessionUpdateComponent implements OnInit {
         },
         (error) => console.error(error)
       );
+
+    this.refreshWeaponList();
+    this.refreshPersonList();
+    this.refreshAmmoList();
   }
 
   formatDate(date: Date) {
@@ -97,10 +139,7 @@ export class SessionUpdateComponent implements OnInit {
 
   personAddClick = () => {
     this.selectedPersonList.push(this.selectedPerson);
-    console.log(this.selectedPersonList);
-    this.personList = this.personList.filter((p) =>
-      this.selectedPersonList.find((sp) => p.personId !== sp.personId)
-    );
+    this.refreshPersonList();
   };
 
   personRemoveClick = (id: number) => {
@@ -108,18 +147,14 @@ export class SessionUpdateComponent implements OnInit {
       this.selectedPersonList.findIndex((e) => e.personId === id),
       1
     );
-    this.personList = this.personList.filter((p) =>
-      this.selectedPersonList.find((sp) => p.personId !== sp.personId)
-    );
+    this.refreshPersonList();
   };
 
   ammoAddClick = () => {
     if (this.countInput !== undefined) {
       this.selectedAmmo.countUsed = this.countInput;
       this.selectedAmmoList.push(this.selectedAmmo);
-      this.ammoList = this.ammoList.filter((a) =>
-        this.selectedAmmoList.find((sa) => a.ammunitionId !== sa.ammunitionId)
-      );
+      this.refreshAmmoList();
       this.countInput = undefined;
     } else {
       alert("You must input an amount of ammo that has been used !");
@@ -130,25 +165,19 @@ export class SessionUpdateComponent implements OnInit {
     this.selectedAmmoList.splice(
       this.selectedAmmoList.findIndex((e) => e.ammunitionId === id)
     );
-    this.ammoList = this.ammoList.filter((a) =>
-      this.selectedAmmoList.find((sa) => a.ammunitionId !== sa.ammunitionId)
-    );
+    this.refreshAmmoList();
   };
 
   weaponAddClick = () => {
     this.selectedWeaponList.push(this.selectedWeapon);
-    this.weaponList = this.weaponList.filter((w) =>
-      this.selectedWeaponList.find((sw) => w.weaponId !== sw.weaponId)
-    );
+    this.refreshWeaponList();
   };
 
   weaponRemoveClick = (id: number) => {
     this.selectedWeaponList.splice(
       this.selectedWeaponList.findIndex((e) => e.weaponId === id)
     );
-    this.weaponList = this.weaponList.filter((w) =>
-      this.selectedWeaponList.find((sw) => w.weaponId !== sw.weaponId)
-    );
+    this.refreshWeaponList();
   };
 
   confirmClick = () => {
@@ -160,17 +189,6 @@ export class SessionUpdateComponent implements OnInit {
       this.selectedWeaponList.length === 0
     ) {
       alert("You must fill all fields before submitting !");
-      console.log(
-        this.dateInput +
-          " " +
-          this.priceInput +
-          " " +
-          this.selectedPersonList.length +
-          " " +
-          this.selectedAmmoList.length +
-          " " +
-          this.selectedWeaponList.length
-      );
     } else {
       this.http
         .put<any>(

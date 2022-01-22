@@ -44,13 +44,3 @@ export class HomeComponent {
       );
   };
 }
-
-interface ShootingSession {
-  sessionDate: Date;
-  totalPrice: number;
-  stallCount: number;
-  shootingRange: Object;
-  sessionParticipants: Object;
-  usedAmmunitions: Object;
-  usedWeapons: Object;
-}

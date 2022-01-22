@@ -26,9 +26,47 @@ export class SessionAdderComponent implements OnInit {
   selectedAmmoList: any[] = [];
   selectedWeaponList: Weapon[] = [];
 
+  refreshPersonList = () => {
+    this.http.get<Person[]>(this.baseUrl + "api/Person").subscribe(
+      (result) => {
+        this.personList = result.filter(
+          (p) =>
+            !this.selectedPersonList.find((sp) => p.personId === sp.personId)
+        );
+      },
+      (error) => console.error(error)
+    );
+  };
+
+  refreshAmmoList = () => {
+    this.http.get<Ammunition[]>(this.baseUrl + "api/Ammunition").subscribe(
+      (result) => {
+        this.ammoList = result.filter(
+          (a) =>
+            !this.selectedAmmoList.find(
+              (sa) => a.ammunitionId === sa.ammunitionId
+            )
+        );
+      },
+      (error) => console.error(error)
+    );
+  };
+
+  refreshWeaponList = () => {
+    this.http.get<Weapon[]>(this.baseUrl + "api/Weapon").subscribe(
+      (result) => {
+        this.weaponList = result.filter(
+          (w) =>
+            !this.selectedWeaponList.find((sw) => w.weaponId === sw.weaponId)
+        );
+      },
+      (error) => console.error(error)
+    );
+  };
+
   constructor(
     private http: HttpClient,
-    @Inject("BASE_URL") baseUrl: string,
+    @Inject("BASE_URL") private baseUrl: string,
     private route: Router
   ) {
     http.get<Person[]>(baseUrl + "api/Person").subscribe(
@@ -62,27 +100,21 @@ export class SessionAdderComponent implements OnInit {
 
   personAddClick = () => {
     this.selectedPersonList.push(this.selectedPerson);
-    this.personList = this.personList.filter((p) =>
-      this.selectedPersonList.find((sp) => p.personId !== sp.personId)
-    );
+    this.refreshPersonList();
   };
 
   personRemoveClick = (id: number) => {
     this.selectedPersonList.splice(
       this.selectedPersonList.findIndex((e) => e.personId === id)
     );
-    this.personList = this.personList.filter((p) =>
-      this.selectedPersonList.find((sp) => p.personId !== sp.personId)
-    );
+    this.refreshPersonList();
   };
 
   ammoAddClick = () => {
     if (this.countInput !== undefined) {
       this.selectedAmmo.countUsed = this.countInput;
       this.selectedAmmoList.push(this.selectedAmmo);
-      this.ammoList = this.ammoList.filter((a) =>
-        this.selectedAmmoList.find((sa) => a.ammunitionId !== sa.ammunitionId)
-      );
+      this.refreshAmmoList();
       this.countInput = undefined;
     } else {
       alert("You must input an amount of ammo that has been used !");
@@ -93,25 +125,19 @@ export class SessionAdderComponent implements OnInit {
     this.selectedAmmoList.splice(
       this.selectedAmmoList.findIndex((e) => e.ammunitionId === id)
     );
-    this.ammoList = this.ammoList.filter((a) =>
-      this.selectedAmmoList.find((sa) => a.ammunitionId !== sa.ammunitionId)
-    );
+    this.refreshAmmoList();
   };
 
   weaponAddClick = () => {
     this.selectedWeaponList.push(this.selectedWeapon);
-    this.weaponList = this.weaponList.filter((w) =>
-      this.selectedWeaponList.find((sw) => w.weaponId !== sw.weaponId)
-    );
+    this.refreshWeaponList();
   };
 
   weaponRemoveClick = (id: number) => {
     this.selectedWeaponList.splice(
       this.selectedWeaponList.findIndex((e) => e.weaponId === id)
     );
-    this.weaponList = this.weaponList.filter((w) =>
-      this.selectedWeaponList.find((sw) => w.weaponId !== sw.weaponId)
-    );
+    this.refreshWeaponList();
   };
 
   confirmClick = () => {
@@ -123,17 +149,6 @@ export class SessionAdderComponent implements OnInit {
       this.selectedWeaponList.length === 0
     ) {
       alert("You must fill all fields before submitting !");
-      console.log(
-        this.dateInput +
-          " " +
-          this.priceInput +
-          " " +
-          this.selectedPersonList.length +
-          " " +
-          this.selectedAmmoList.length +
-          " " +
-          this.selectedWeaponList.length
-      );
     } else {
       this.http
         .post<ShootingSession>("https://localhost:5001/api/ShootingSession", {
@@ -156,40 +171,4 @@ export class SessionAdderComponent implements OnInit {
   };
 
   ngOnInit() {}
-}
-
-interface Person {
-  personId: number;
-  name: string;
-  age: number;
-}
-
-interface Ammunition {
-  ammunitionId: number;
-  caliber: string;
-  ammoPicture: string;
-  pricePerPack: number;
-  countUsed: number;
-}
-
-interface Weapon {
-  weaponId: number;
-  weaponName: string;
-  weaponPicture: string;
-}
-
-interface ShootingRange {
-  shootingRangeId: number;
-  address: string;
-  pricePerStall: number;
-}
-
-interface ShootingSession {
-  sessionDate: Date;
-  totalPrice: number;
-  stallCount: number;
-  shootingRangeId: number;
-  sessionParticipants: Person[];
-  usedAmmunitions: Ammunition[];
-  usedWeapons: Weapon[];
 }
