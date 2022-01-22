@@ -5,20 +5,20 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 
 import { AppComponent } from "./app.component";
-import { NavMenuComponent } from "./nav-menu/nav-menu.component";
-import { HomeComponent } from "./home/home.component";
-import { CounterComponent } from "./counter/counter.component";
-import { FetchDataComponent } from "./fetch-data/fetch-data.component";
-import { DefaultButtonComponent } from "./default-button/default-button.component";
-import { SummaryBarComponent } from "./summary-bar/summary-bar.component";
-import { RecentSessionCompComponent } from "./recent-session-comp/recent-session-comp.component";
-import { MostRecentCompComponent } from "./most-recent-comp/most-recent-comp.component";
-import { SessionAdderComponent } from "./session-adder/session-adder.component";
+import { NavMenuComponent } from "./components/nav-menu/nav-menu.component";
+import { HomeComponent } from "./pages/home/home.component";
+import { CounterComponent } from "./components/counter/counter.component";
+import { FetchDataComponent } from "./components/fetch-data/fetch-data.component";
+import { DefaultButtonComponent } from "./components/default-button/default-button.component";
+import { SummaryBarComponent } from "./components/summary-bar/summary-bar.component";
+import { RecentSessionCompComponent } from "./components/recent-session-comp/recent-session-comp.component";
+import { MostRecentCompComponent } from "./components/most-recent-comp/most-recent-comp.component";
+import { SessionAdderComponent } from "./pages/session-adder/session-adder.component";
 import { Session } from "protractor";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
-import { MinimalButtonComponent } from "./minimal-button/minimal-button.component";
-import { SessionUpdateComponent } from "./session-update/session-update.component";
+import { MinimalButtonComponent } from "./components/minimal-button/minimal-button.component";
+import { SessionUpdateComponent } from "./pages/session-update/session-update.component";
 
 @NgModule({
   declarations: [
