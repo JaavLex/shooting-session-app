@@ -5,6 +5,6 @@ namespace ssa_backend.Models.DTO
         public int WeaponId { get; set; }
         public string WeaponName { get; set; }
         public string WeaponPicture { get; set; }
-        public int? AmmunitionId { get; set; }
+        public AmmunitionDto Ammunition { get; set; }
     }
 }

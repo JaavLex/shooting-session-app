@@ -73,27 +73,6 @@ export class SessionUpdateComponent implements OnInit {
     private route: Router,
     routeparams: ActivatedRoute
   ) {
-    // http.get<Person[]>(baseUrl + "api/Person").subscribe(
-    //   (result) => {
-    //     this.personList = result;
-    //   },
-    //   (error) => console.error(error)
-    // );
-
-    // http.get<Ammunition[]>(baseUrl + "api/Ammunition").subscribe(
-    //   (result) => {
-    //     this.ammoList = result;
-    //   },
-    //   (error) => console.error(error)
-    // );
-
-    // http.get<Weapon[]>(baseUrl + "api/Weapon").subscribe(
-    //   (result) => {
-    //     this.weaponList = result;
-    //   },
-    //   (error) => console.error(error)
-    // );
-
     http.get<ShootingRange[]>(baseUrl + "api/ShootingRange").subscribe(
       (result) => {
         this.shootingRangeList = result;
@@ -220,20 +199,6 @@ interface Person {
   personId: number;
   name: string;
   age: number;
-}
-
-interface Ammunition {
-  ammunitionId: number;
-  caliber: string;
-  ammoPicture: string;
-  pricePerPack: number;
-  countUsed: number;
-}
-
-interface Weapon {
-  weaponId: number;
-  weaponName: string;
-  weaponPicture: string;
 }
 
 interface ShootingRange {

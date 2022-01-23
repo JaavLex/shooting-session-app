@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-home",
@@ -11,7 +10,7 @@ export class HomeComponent {
   public sessions: ShootingSession[];
   public mostRecentSession: ShootingSession;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     http
       .get<ShootingSession[]>(`https://localhost:5001/api/ShootingSession`)
       .subscribe(

@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="containerfooter">
+      <div class="pricewrapper">
+        <p>Caliber: <input type="text" [(ngModel)]="caliberInput" /></p>
+        <p>
+          Ammo picture (URL):
+          <input type="text" [(ngModel)]="ammoPictureInput" />
+        </p>
+        <p>
+          Price per packs:
+          <input type="number" [(ngModel)]="pricePerPacksInput" />
+        </p>
+      </div>
+    </div>
+    <app-default-button
+      [insideContent]="'Confirm'"
+      (click)="confirmClick()"
+    ></app-default-button>
+  </div>
+</div>

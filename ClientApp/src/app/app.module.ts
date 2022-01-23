@@ -22,7 +22,15 @@ import { SessionUpdateComponent } from "./pages/session-update/session-update.co
 import { HomeWeaponsComponent } from "./pages/home-weapons/home-weapons.component";
 import { WeaponListCompComponent } from "./components/weapon-list-comp/weapon-list-comp.component";
 import { WeaponViewerCompComponent } from "./components/weapon-viewer-comp/weapon-viewer-comp.component";
-
+import { WeaponBarComponent } from "./components/weapon-bar/weapon-bar.component";
+import { WeaponAdderComponent } from "./pages/weapon-adder/weapon-adder.component";
+import { WeaponUpdateComponent } from "./pages/weapon-update/weapon-update.component";
+import { HomeAmmoComponent } from "./pages/home-ammo/home-ammo.component";
+import { AmmoListCompComponent } from "./components/ammo-list-comp/ammo-list-comp.component";
+import { AmmoBarComponent } from "./components/ammo-bar/ammo-bar.component";
+import { AmmoViewerCompComponent } from "./components/ammo-viewer-comp/ammo-viewer-comp.component";
+import { AmmoAdderComponent } from "./pages/ammo-adder/ammo-adder.component";
+import { AmmoUpdateComponent } from "./pages/ammo-update/ammo-update.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +48,15 @@ import { WeaponViewerCompComponent } from "./components/weapon-viewer-comp/weapo
     HomeWeaponsComponent,
     WeaponListCompComponent,
     WeaponViewerCompComponent,
+    WeaponBarComponent,
+    WeaponAdderComponent,
+    WeaponUpdateComponent,
+    HomeAmmoComponent,
+    AmmoListCompComponent,
+    AmmoBarComponent,
+    AmmoViewerCompComponent,
+    AmmoAdderComponent,
+    AmmoUpdateComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -48,9 +65,15 @@ import { WeaponViewerCompComponent } from "./components/weapon-viewer-comp/weapo
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "addsession", component: SessionAdderComponent },
+      { path: "updatesession/:id", component: SessionUpdateComponent },
+      { path: "weapons", component: HomeWeaponsComponent },
+      { path: "addweapon", component: WeaponAdderComponent },
+      { path: "updateweapon/:id", component: WeaponUpdateComponent },
+      { path: "ammos", component: HomeAmmoComponent },
+      { path: "addammo", component: AmmoAdderComponent },
+      { path: "updateammo/:id", component: AmmoUpdateComponent },
       { path: "counter", component: CounterComponent },
       { path: "fetch-data", component: FetchDataComponent },
-      { path: "updatesession/:id", component: SessionUpdateComponent },
     ]),
     BrowserAnimationsModule,
     MatIconModule,

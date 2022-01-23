@@ -8,6 +8,13 @@ namespace ssa_backend.Models
         {
         }
         
+        public Ammunition(string caliber, string ammoPicture, int pricePerPacks)
+        {
+            Caliber = caliber;
+            AmmoPicture = ammoPicture;
+            PricePerPacks = pricePerPacks;
+        }
+        
         public int AmmunitionId { get; set; }
         public string Caliber { get; set; }
         public string AmmoPicture { get; set; }

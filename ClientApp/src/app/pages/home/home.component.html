@@ -1,9 +1,17 @@
 <div class="container">
-  <app-recent-session-comp
-    [sessionList]="sessions"
-    (showSessionId)="setShownSession($event)"
-  ></app-recent-session-comp>
-  <div class="mostrecentwrapper">
+  <div class="wrapper">
+    <app-recent-session-comp
+      [sessionList]="sessions"
+      (showSessionId)="setShownSession($event)"
+    ></app-recent-session-comp>
+    <app-default-button
+      *ngIf="sessions.length === 0"
+      [insideContent]="'New Session'"
+      [routerLink]="['/addsession']"
+    ></app-default-button>
+  </div>
+
+  <div *ngIf="sessions.length > 0" class="wrapper">
     <app-session-viewer-comp [session]="mostRecentSession">
     </app-session-viewer-comp>
     <app-default-button

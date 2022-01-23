@@ -1,1 +1,37 @@
-<p>weapon-list-comp works!</p>
+<div class="wrapper">
+  <h1>Weapons</h1>
+  <div class="recent-header">
+    <div class="icons-header">
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >event</mat-icon
+      >
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >straighten</mat-icon
+      >
+    </div>
+  </div>
+  <div
+    *ngIf="weaponList.length > 0; else noWeaponBlock"
+    class="session-container"
+  >
+    <app-weapon-bar
+      *ngFor="let weapon of weaponList"
+      class="session-button"
+      [weaponName]="weapon.weaponName"
+      [weaponAmmo]="weapon.ammunition.caliber"
+      (click)="sendWeaponId(weapon.weaponId)"
+    ></app-weapon-bar>
+  </div>
+
+  <ng-template #noWeaponBlock>
+    <div class="no-session-container">
+      <h4><i>No weapons recorded.</i></h4>
+    </div>
+  </ng-template>
+</div>

@@ -1,1 +1,19 @@
-<p>weapon-viewer-comp works!</p>
+<div class="wrapper">
+  <h2>
+    {{ weapon.weaponName }}
+  </h2>
+  <div class="container"><img [src]="weapon.weaponPicture" /></div>
+
+  <div class="pricewrapper">{{ weapon.ammunition.caliber }}</div>
+
+  <div class="action-buttons">
+    <app-minimal-button
+      [insideContent]="'edit'"
+      (click)="updateWeapon(weapon.weaponId)"
+    ></app-minimal-button>
+    <app-minimal-button
+      [insideContent]="'delete'"
+      (click)="deleteWeapon(weapon.weaponId)"
+    ></app-minimal-button>
+  </div>
+</div>

@@ -28,7 +28,10 @@
       >
     </div>
   </div>
-  <div class="session-container">
+  <div
+    *ngIf="sessionList.length > 0; else noSessionBlock"
+    class="session-container"
+  >
     <app-summary-bar
       *ngFor="let session of sessionList"
       class="session-button"
@@ -39,4 +42,10 @@
       (click)="sendSessionId(session.shootingSessionId)"
     ></app-summary-bar>
   </div>
+
+  <ng-template #noSessionBlock>
+    <div class="no-session-container">
+      <h4><i>No sessions recorded.</i></h4>
+    </div>
+  </ng-template>
 </div>

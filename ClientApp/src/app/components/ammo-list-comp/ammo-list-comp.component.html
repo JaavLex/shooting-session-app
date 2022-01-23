@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <h1>Ammos</h1>
+  <div class="recent-header">
+    <div class="icons-header">
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >straighten</mat-icon
+      >
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >paid</mat-icon
+      >
+    </div>
+  </div>
+  <div *ngIf="ammoList.length > 0; else noAmmoBlock" class="session-container">
+    <app-ammo-bar
+      *ngFor="let ammo of ammoList"
+      class="session-button"
+      [caliber]="ammo.caliber"
+      [pricePerPacks]="ammo.pricePerPacks"
+      (click)="sendAmmoId(ammo.ammunitionId)"
+    ></app-ammo-bar>
+  </div>
+
+  <ng-template #noAmmoBlock>
+    <div class="no-session-container">
+      <h4><i>No ammos recorded.</i></h4>
+    </div>
+  </ng-template>
+</div>

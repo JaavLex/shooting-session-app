@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="container">
+    <select #range [(ngModel)]="selectedAmmo">
+      <option disabled>Select an ammunition</option>
+      <option
+        *ngFor="let ammunition of ammoList"
+        [value]="ammunition.ammunitionId"
+      >
+        {{ ammunition.caliber }}
+      </option>
+    </select>
+    <div class="containerfooter">
+      <div class="pricewrapper">
+        <p>Weapon Name: <input type="text" [(ngModel)]="weaponNameInput" /></p>
+        <p>
+          Weapon Picture (URL):
+          <input type="text" [(ngModel)]="weaponPictureInput" />
+        </p>
+      </div>
+    </div>
+    <app-default-button
+      [insideContent]="'Confirm'"
+      (click)="confirmClick()"
+    ></app-default-button>
+  </div>
+</div>

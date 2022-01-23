@@ -7,6 +7,13 @@ namespace ssa_backend.Models
         public Weapon()
         {
         }
+
+        public Weapon(string weaponName, string weaponPicture, int? ammunitionId)
+        {
+            WeaponName = weaponName;
+            WeaponPicture = weaponPicture;
+            AmmunitionId = ammunitionId;
+        }
         
         public int WeaponId { get; set; }
         public string WeaponName { get; set; }

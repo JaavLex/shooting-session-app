@@ -1,14 +1,20 @@
 <div class="container">
-  <app-recent-session-comp
-    [sessionList]="sessions"
-    (showSessionId)="setShownSession($event)"
-  ></app-recent-session-comp>
-  <div class="mostrecentwrapper">
-    <app-session-viewer-comp [session]="mostRecentSession">
-    </app-session-viewer-comp>
+  <div class="wrapper">
+    <app-weapon-list-comp
+      [weaponList]="weapons"
+      (showWeaponId)="setShownWeapon($event)"
+    ></app-weapon-list-comp>
     <app-default-button
-      [insideContent]="'New Session'"
-      [routerLink]="['/addsession']"
+      *ngIf="weapons.length === 0"
+      [insideContent]="'New Weapon'"
+      [routerLink]="['/addweapon']"
+    ></app-default-button>
+  </div>
+  <div *ngIf="weapons.length > 0" class="wrapper">
+    <app-weapon-viewer-comp [weapon]="lastweapon"> </app-weapon-viewer-comp>
+    <app-default-button
+      [insideContent]="'New Weapon'"
+      [routerLink]="['/addweapon']"
     ></app-default-button>
   </div>
 </div>

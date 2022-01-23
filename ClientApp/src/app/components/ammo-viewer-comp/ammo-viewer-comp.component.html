@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <h2>
+    {{ ammo.caliber }}
+  </h2>
+  <div class="container"><img [src]="ammo.ammoPicture" /></div>
+
+  <div class="pricewrapper">{{ ammo.pricePerPacks }}.- per pack</div>
+
+  <div class="action-buttons">
+    <app-minimal-button
+      [insideContent]="'edit'"
+      (click)="updateAmmo(ammo.ammunitionId)"
+    ></app-minimal-button>
+    <app-minimal-button
+      [insideContent]="'delete'"
+      (click)="deleteAmmo(ammo.ammunitionId)"
+    ></app-minimal-button>
+  </div>
+</div>

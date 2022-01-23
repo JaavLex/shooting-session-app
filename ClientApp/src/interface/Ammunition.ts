@@ -2,6 +2,6 @@ interface Ammunition {
   ammunitionId: number;
   caliber: string;
   ammoPicture: string;
-  pricePerPack: number;
+  pricePerPacks: number;
   countUsed: number;
 }

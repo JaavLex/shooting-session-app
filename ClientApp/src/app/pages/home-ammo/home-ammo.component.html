@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="wrapper">
+    <app-ammo-list-comp
+      [ammoList]="ammos"
+      (showAmmoId)="setShownAmmo($event)"
+    ></app-ammo-list-comp>
+    <app-default-button
+      *ngIf="ammos.length === 0"
+      [insideContent]="'New Ammo'"
+      [routerLink]="['/addammo']"
+    ></app-default-button>
+  </div>
+  <div *ngIf="ammos.length > 0" class="wrapper">
+    <app-ammo-viewer-comp [ammo]="lastammo"> </app-ammo-viewer-comp>
+    <app-default-button
+      [insideContent]="'New Ammo'"
+      [routerLink]="['/addammo']"
+    ></app-default-button>
+  </div>
+</div>
