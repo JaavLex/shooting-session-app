@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="pricewrapper">
+    {{ range.address }} - {{ range.pricePerStall }}.- per stalls
+  </div>
+
+  <div class="action-buttons">
+    <app-minimal-button
+      [insideContent]="'edit'"
+      (click)="updateRange(range.shootingRangeId)"
+    ></app-minimal-button>
+    <app-minimal-button
+      [insideContent]="'delete'"
+      (click)="deleteRange(range.shootingRangeId)"
+    ></app-minimal-button>
+  </div>
+</div>

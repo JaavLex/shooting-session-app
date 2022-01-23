@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <h1>Participants</h1>
+  <div class="recent-header">
+    <div class="icons-header">
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >map</mat-icon
+      >
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >paid</mat-icon
+      >
+    </div>
+  </div>
+  <div
+    *ngIf="rangeList.length > 0; else noRangeBlock"
+    class="session-container"
+  >
+    <app-range-bar
+      *ngFor="let range of rangeList"
+      class="session-button"
+      [address]="range.address"
+      [pricePerStall]="range.pricePerStall"
+      (click)="sendRangeId(range.shootingRangeId)"
+    ></app-range-bar>
+  </div>
+
+  <ng-template #noRangeBlock>
+    <div class="no-session-container">
+      <h4><i>No participants recorded.</i></h4>
+    </div>
+  </ng-template>
+</div>

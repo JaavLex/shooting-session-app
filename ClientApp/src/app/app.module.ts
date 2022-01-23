@@ -31,6 +31,18 @@ import { AmmoBarComponent } from "./components/ammo-bar/ammo-bar.component";
 import { AmmoViewerCompComponent } from "./components/ammo-viewer-comp/ammo-viewer-comp.component";
 import { AmmoAdderComponent } from "./pages/ammo-adder/ammo-adder.component";
 import { AmmoUpdateComponent } from "./pages/ammo-update/ammo-update.component";
+import { HomePersonComponent } from "./pages/home-person/home-person.component";
+import { PersonBarComponent } from "./components/person-bar/person-bar.component";
+import { PersonListCompComponent } from "./components/person-list-comp/person-list-comp.component";
+import { PersonViewerCompComponent } from "./components/person-viewer-comp/person-viewer-comp.component";
+import { PersonAdderComponent } from "./pages/person-adder/person-adder.component";
+import { PersonUpdateComponent } from "./pages/person-update/person-update.component";
+import { HomeRangeComponent } from "./pages/home-range/home-range.component";
+import { RangeBarComponent } from "./components/range-bar/range-bar.component";
+import { RangeListCompComponent } from "./components/range-list-comp/range-list-comp.component";
+import { RangeViewerCompComponent } from "./components/range-viewer-comp/range-viewer-comp.component";
+import { RangeAdderComponent } from "./pages/range-adder/range-adder.component";
+import { RangeUpdateComponent } from "./pages/range-update/range-update.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +69,18 @@ import { AmmoUpdateComponent } from "./pages/ammo-update/ammo-update.component";
     AmmoViewerCompComponent,
     AmmoAdderComponent,
     AmmoUpdateComponent,
+    HomePersonComponent,
+    PersonBarComponent,
+    PersonListCompComponent,
+    PersonViewerCompComponent,
+    PersonAdderComponent,
+    PersonUpdateComponent,
+    HomeRangeComponent,
+    RangeBarComponent,
+    RangeListCompComponent,
+    RangeViewerCompComponent,
+    RangeAdderComponent,
+    RangeUpdateComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -72,6 +96,12 @@ import { AmmoUpdateComponent } from "./pages/ammo-update/ammo-update.component";
       { path: "ammos", component: HomeAmmoComponent },
       { path: "addammo", component: AmmoAdderComponent },
       { path: "updateammo/:id", component: AmmoUpdateComponent },
+      { path: "persons", component: HomePersonComponent },
+      { path: "addperson", component: PersonAdderComponent },
+      { path: "updateperson/:id", component: PersonUpdateComponent },
+      { path: "ranges", component: HomeRangeComponent },
+      { path: "addrange", component: RangeAdderComponent },
+      { path: "updaterange/:id", component: RangeUpdateComponent },
       { path: "counter", component: CounterComponent },
       { path: "fetch-data", component: FetchDataComponent },
     ]),

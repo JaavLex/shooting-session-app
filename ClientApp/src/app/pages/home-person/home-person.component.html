@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="wrapper">
+    <app-person-list-comp
+      [personList]="persons"
+      (showPersonId)="setShownPerson($event)"
+    ></app-person-list-comp>
+    <app-default-button
+      *ngIf="persons.length === 0"
+      [insideContent]="'New Person'"
+      [routerLink]="['/addperson']"
+    ></app-default-button>
+  </div>
+  <div *ngIf="persons.length > 0" class="wrapper">
+    <app-person-viewer-comp [person]="lastperson"> </app-person-viewer-comp>
+    <app-default-button
+      [insideContent]="'New Person'"
+      [routerLink]="['/addperson']"
+    ></app-default-button>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="containerfooter">
+      <div class="pricewrapper">
+        <p>Name: <input type="text" [(ngModel)]="nameInput" /></p>
+        <p>Age: <input type="number" [(ngModel)]="ageInput" /></p>
+      </div>
+    </div>
+    <app-default-button
+      [insideContent]="'Confirm'"
+      (click)="confirmClick()"
+    ></app-default-button>
+  </div>
+</div>

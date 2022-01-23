@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="pricewrapper">
+    {{ person.name }} - {{ person.age }} years old.
+  </div>
+
+  <div class="action-buttons">
+    <app-minimal-button
+      [insideContent]="'edit'"
+      (click)="updatePerson(person.personId)"
+    ></app-minimal-button>
+    <app-minimal-button
+      [insideContent]="'delete'"
+      (click)="deletePerson(person.personId)"
+    ></app-minimal-button>
+  </div>
+</div>

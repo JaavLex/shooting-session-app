@@ -1,0 +1,37 @@
+<div class="wrapper">
+  <h1>Participants</h1>
+  <div class="recent-header">
+    <div class="icons-header">
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >person</mat-icon
+      >
+      <mat-icon
+        class="icon-color"
+        aria-hidden="false"
+        aria-label="Example home icon"
+        >cake</mat-icon
+      >
+    </div>
+  </div>
+  <div
+    *ngIf="personList.length > 0; else noPersonBlock"
+    class="session-container"
+  >
+    <app-person-bar
+      *ngFor="let person of personList"
+      class="session-button"
+      [name]="person.name"
+      [age]="person.age"
+      (click)="sendPersonId(person.personId)"
+    ></app-person-bar>
+  </div>
+
+  <ng-template #noPersonBlock>
+    <div class="no-session-container">
+      <h4><i>No participants recorded.</i></h4>
+    </div>
+  </ng-template>
+</div>

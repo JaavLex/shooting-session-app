@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="containerfooter">
+      <div class="pricewrapper">
+        <p>Address: <input type="text" [(ngModel)]="addressInput" /></p>
+        <p>
+          Price per stalls:
+          <input type="number" [(ngModel)]="pricePerStallInput" />
+        </p>
+      </div>
+    </div>
+    <app-default-button
+      [insideContent]="'Confirm'"
+      (click)="confirmClick()"
+    ></app-default-button>
+  </div>
+</div>
