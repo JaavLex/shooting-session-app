@@ -14,10 +14,10 @@ export class SessionUpdateComponent implements OnInit {
   public shootingRangeList: ShootingRange[] = [];
   public updateSession: ShootingSession;
 
-  selectedPerson: Person;
-  selectedAmmo: Ammunition;
-  selectedWeapon: Weapon;
-  selectedRange: any;
+  selectedPerson: any = "none";
+  selectedAmmo: any = "none";
+  selectedWeapon: any = "none";
+  selectedRange: any = "none";
 
   priceInput: number;
   countInput: number;
@@ -117,8 +117,13 @@ export class SessionUpdateComponent implements OnInit {
   }
 
   personAddClick = () => {
-    this.selectedPersonList.push(this.selectedPerson);
-    this.refreshPersonList();
+    if (this.selectedPerson !== "none") {
+      this.selectedPersonList.push(this.selectedPerson);
+      this.selectedPerson = "none";
+      this.refreshPersonList();
+    } else {
+      alert("You must select a person from the list !");
+    }
   };
 
   personRemoveClick = (id: number) => {
@@ -130,13 +135,16 @@ export class SessionUpdateComponent implements OnInit {
   };
 
   ammoAddClick = () => {
-    if (this.countInput !== undefined) {
+    if (this.countInput !== undefined || this.selectedAmmo !== "none") {
       this.selectedAmmo.countUsed = this.countInput;
       this.selectedAmmoList.push(this.selectedAmmo);
+      this.selectedAmmo = "none";
       this.refreshAmmoList();
       this.countInput = undefined;
     } else {
-      alert("You must input an amount of ammo that has been used !");
+      alert(
+        "You must input an amount of ammo that has been used and select one from the list !"
+      );
     }
   };
 
@@ -148,8 +156,13 @@ export class SessionUpdateComponent implements OnInit {
   };
 
   weaponAddClick = () => {
-    this.selectedWeaponList.push(this.selectedWeapon);
-    this.refreshWeaponList();
+    if (this.selectedWeapon !== "none") {
+      this.selectedWeaponList.push(this.selectedWeapon);
+      this.selectedWeapon = "none";
+      this.refreshWeaponList();
+    } else {
+      alert("You must select a weapon from the list !");
+    }
   };
 
   weaponRemoveClick = (id: number) => {
@@ -165,7 +178,8 @@ export class SessionUpdateComponent implements OnInit {
       this.priceInput === undefined ||
       this.selectedPersonList.length === 0 ||
       this.selectedAmmoList.length === 0 ||
-      this.selectedWeaponList.length === 0
+      this.selectedWeaponList.length === 0 ||
+      this.selectedRange === "none"
     ) {
       alert("You must fill all fields before submitting !");
     } else {

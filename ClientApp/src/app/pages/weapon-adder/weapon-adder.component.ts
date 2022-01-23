@@ -12,7 +12,7 @@ export class WeaponAdderComponent implements OnInit {
 
   weaponNameInput: string;
   weaponPictureInput: string;
-  selectedAmmo: any;
+  selectedAmmo: any = "none";
 
   constructor(
     private http: HttpClient,
@@ -30,7 +30,8 @@ export class WeaponAdderComponent implements OnInit {
   confirmClick = () => {
     if (
       this.weaponNameInput === undefined ||
-      this.weaponPictureInput === undefined
+      this.weaponPictureInput === undefined ||
+      this.selectedAmmo === "none"
     ) {
       alert("You must fill all fields before submitting !");
     } else {

@@ -2,7 +2,7 @@
   <div class="containerheader">
     <input type="date" [(ngModel)]="dateInput" /> -
     <select #range [(ngModel)]="selectedRange">
-      <option disabled>Select a range</option>
+      <option disabled value="none">Select a range</option>
       <option
         *ngFor="let shootingRange of shootingRangeList"
         [value]="shootingRange.shootingRangeId"
@@ -25,7 +25,7 @@
       </div>
       <div class="selector">
         <select #person [(ngModel)]="selectedPerson">
-          <option disabled>Select a person</option>
+          <option disabled value="none">Select a person</option>
           <option *ngFor="let person of personList" [ngValue]="person">
             {{ person.name }}
           </option>
@@ -51,7 +51,7 @@
       </div>
       <div class="selector">
         <select #ammo [(ngModel)]="selectedAmmo">
-          <option disabled>Select an ammunition</option>
+          <option disabled value="none">Select an ammunition</option>
           <option *ngFor="let ammo of ammoList" [ngValue]="ammo">
             {{ ammo.caliber }}
           </option>
@@ -78,7 +78,7 @@
       </div>
       <div class="selector">
         <select #weapon [(ngModel)]="selectedWeapon">
-          <option disabled>Select a weapon</option>
+          <option disabled value="none">Select a weapon</option>
           <option *ngFor="let weapon of weaponList" [ngValue]="weapon">
             {{ weapon.weaponName }}
           </option>
