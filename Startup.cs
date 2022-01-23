@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using ssa_backend.Models;
 
 namespace ssa_backend
@@ -32,6 +33,11 @@ namespace ssa_backend
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "ShootingSessionApi", Version = "v1.0"});
+            });
+
             services.AddDbContext<SsaContext>();
         }
 
@@ -51,10 +57,16 @@ namespace ssa_backend
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSwagger();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SSApiV1");
+            });
 
             app.UseRouting();
 
