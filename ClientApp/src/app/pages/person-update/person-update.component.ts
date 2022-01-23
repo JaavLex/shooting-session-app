@@ -44,8 +44,10 @@ export class PersonUpdateComponent implements OnInit {
             console.log(result);
           },
           (error) => console.error(error)
-        );
-      this.route.navigate(["/persons"]);
+        )
+        .add(() => {
+          this.route.navigate(["/persons"]);
+        });
     }
   };
 

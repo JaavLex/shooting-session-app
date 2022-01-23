@@ -116,7 +116,7 @@ export class SessionAdderComponent implements OnInit {
   };
 
   ammoAddClick = () => {
-    if (this.countInput !== undefined || this.selectedAmmo !== "none") {
+    if (this.countInput !== undefined && this.selectedAmmo !== "none") {
       this.selectedAmmo.countUsed = this.countInput;
       this.selectedAmmoList.push(this.selectedAmmo);
       this.selectedAmmo = "none";
@@ -179,8 +179,10 @@ export class SessionAdderComponent implements OnInit {
             console.log(result);
           },
           (error) => console.error(error)
-        );
-      this.route.navigate(["/"]);
+        )
+        .add(() => {
+          this.route.navigate(["/"]);
+        });
     }
   };
 

@@ -34,8 +34,10 @@ export class RangeAdderComponent implements OnInit {
             console.log(result);
           },
           (error) => console.error(error)
-        );
-      this.route.navigate(["/ranges"]);
+        )
+        .add(() => {
+          this.route.navigate(["/ranges"]);
+        });
     }
   };
 

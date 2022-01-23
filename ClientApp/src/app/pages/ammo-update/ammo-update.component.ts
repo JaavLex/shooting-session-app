@@ -54,8 +54,10 @@ export class AmmoUpdateComponent implements OnInit {
             console.log(result);
           },
           (error) => console.error(error)
-        );
-      this.route.navigate(["/ammos"]);
+        )
+        .add(() => {
+          this.route.navigate(["/ammos"]);
+        });
     }
   };
 

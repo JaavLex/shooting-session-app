@@ -60,8 +60,10 @@ export class WeaponUpdateComponent implements OnInit {
             console.log(result);
           },
           (error) => console.error(error)
-        );
-      this.route.navigate(["/weapons"]);
+        )
+        .add(() => {
+          this.route.navigate(["/weapons"]);
+        });
     }
   };
 
